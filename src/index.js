@@ -1,5 +1,15 @@
-import Module from './module'
+import * as React from 'react'
+import ReactDOM from 'react-dom'
 
-const root = document.querySelector('#root')
+class App extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <h1>TODO</h1>
+      </div>
+    )
+  }
+}
 
-root.innerHTML = Module
+const rootElement = document.getElementById('root')
+ReactDOM.render(<App />,rootElement)
