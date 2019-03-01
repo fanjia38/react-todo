@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { Form, Input, Button, Switch } from 'antd'
 
-import { addTask, toggleFilter } from '../store'
+import { addTask, toggleFilter } from './store'
 
 class Component extends React.Component {
   handleSubmit = e => {
@@ -27,23 +26,16 @@ class Component extends React.Component {
   render() {
     return (
       <>
-        <Form layout="inline" onSubmit={this.handleSubmit}>
-          <Form.Item>
-            <Input name="task" style={{ width: 200 }} />
-          </Form.Item>
-          <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              onClick={() => this.handleSubmit()}
-            >
-              送信
-            </Button>
-          </Form.Item>
-        </Form>
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" name="task" />
+          <button type="submit">
+            送信
+          </button>
+        </form>
         <p>
-          filterは{this.props.isFiltered ? 'on' : 'off'}です。
-          <Switch defaultChecked={false} onChange={this.handleToggleFilter} />
+          <button onClick={this.handleToggleFilter}>
+            filterは{this.props.isFiltered ? 'on' : 'off'}です。
+          </button>
         </p>
       </>
     )

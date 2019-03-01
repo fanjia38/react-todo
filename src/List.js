@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 
-import { updateTaskStatus } from '../store'
+import { updateTaskStatus } from './store'
 import Check from './Check'
-import { Card, List } from 'antd'
 
 class Component extends React.Component {
   handleUpdateTaskStatus = id => {
@@ -15,27 +14,24 @@ class Component extends React.Component {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <p>
-          残りタスクは{this.props.todoList.filter(todo => !todo.isDone).length}
-          個です。
+          残りタスクは{this.props.todoList.filter(todo => !todo.isDone).length}個です。
         </p>
-        <Card bordered={false} style={{ maxWidth: 400 }}>
-          <List bordered={false}>
-            {this.props.todoList
-              .filter(todo => (this.props.isFiltered ? !todo.isDone : true))
-              .map(todo => (
-                <Check
-                  key={todo.id}
-                  id={todo.id}
-                  task={todo.task}
-                  isDone={todo.isDone}
-                  handleUpdate={this.handleUpdateTaskStatus}
-                />
-              ))}
-          </List>
-        </Card>
-      </>
+        <ul>
+          {this.props.todoList
+            .filter(todo => (this.props.isFiltered ? !todo.isDone : true))
+            .map(todo => (
+              <Check
+                key={todo.id}
+                id={todo.id}
+                task={todo.task}
+                isDone={todo.isDone}
+                handleUpdate={this.handleUpdateTaskStatus}
+              />
+            ))}
+        </ul>
+      </React.Fragment>
     )
   }
 }

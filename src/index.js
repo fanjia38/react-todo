@@ -6,7 +6,6 @@ import Form from './Form'
 import List from './List'
 import store from './store'
 
-import 'antd/dist/antd.css'
 import './styles.css'
 
 class App extends React.Component {
