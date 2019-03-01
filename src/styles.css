@@ -1,0 +1,13 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.ant-card {
+  margin: 0 auto;
+}
+ul {
+  padding: 0;
+}
+li {
+  list-style-type: none;
+}
