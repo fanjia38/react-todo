@@ -1,7 +1,7 @@
 import React from 'react'
 
 class Check extends React.Component {
-  render() {
+  render () {
     const { task, isDone, handleUpdate, id } = this.props
     return (
       <li>

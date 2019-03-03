@@ -12,7 +12,7 @@ class Component extends React.Component {
     this.props.updateTaskStatus(updatedTodos)
   }
 
-  render() {
+  render () {
     return (
       <React.Fragment>
         <p>
