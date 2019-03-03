@@ -23,9 +23,9 @@ class Component extends React.Component {
     this.props.toggleFilter(!this.props.isFiltered)
   }
 
-  render() {
+  render () {
     return (
-      <>
+      <React.Fragment>
         <form onSubmit={this.handleSubmit}>
           <input type="text" name="task" />
           <button type="submit">
@@ -37,7 +37,7 @@ class Component extends React.Component {
             filterは{this.props.isFiltered ? 'on' : 'off'}です。
           </button>
         </p>
-      </>
+      </React.Fragment>
     )
   }
 }

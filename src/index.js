@@ -9,7 +9,7 @@ import store from './store'
 import './styles.css'
 
 class App extends React.Component {
-  render() {
+  render () {
     return (
       <div className="App">
         <h1>TODO</h1>
