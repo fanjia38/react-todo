@@ -6,7 +6,7 @@ import { addTask, toggleFilter } from './store'
 class Component extends React.Component {
   handleSubmit = e => {
     e.preventDefault()
-    const inputed = e.target['task'].value
+    const inputed = e.target.task.value
     if (inputed.length <= 0) return
 
     const newTodo = {
@@ -16,7 +16,7 @@ class Component extends React.Component {
     }
 
     this.props.addTask(newTodo)
-    e.target['task'].value = ''
+    e.target.task.value = ''
   }
 
   handleToggleFilter = e => {
