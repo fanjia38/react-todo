@@ -1,45 +1,48 @@
-import * as React from 'react'
-import { connect } from 'react-redux'
+import React, { useState, useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { addTask, toggleFilter } from './store'
 
-class Component extends React.Component {
-  handleSubmit = e => {
-    e.preventDefault()
-    const inputed = e.target.task.value
-    if (inputed.length <= 0) return
+const Form = () => {
+  const [inputText, setInputText] = useState('')
+
+  const dispatch = useDispatch()
+  const isFiltered = useSelector(store => store.isFiltered)
+
+  const handleClickButton = useCallback(() => {
+    if (inputText.length <= 0) return
 
     const newTodo = {
       id: _genUUID(),
-      task: inputed,
+      task: inputText,
       isDone: false
     }
 
-    this.props.addTask(newTodo)
-    e.target.task.value = ''
-  }
+    dispatch(addTask(newTodo))
+    setInputText('')
+  }, [inputText, setInputText, addTask])
 
-  handleToggleFilter = e => {
-    this.props.toggleFilter(!this.props.isFiltered)
-  }
+  const handleChangeInput = useCallback((e) => {
+    setInputText(e.target.value)
+  }, [setInputText])
 
-  render () {
-    return (
-      <React.Fragment>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" name="task" />
-          <button type="submit">
-            送信
-          </button>
-        </form>
-        <p>
-          <button onClick={this.handleToggleFilter}>
-            filterは{this.props.isFiltered ? 'on' : 'off'}です。
-          </button>
-        </p>
-      </React.Fragment>
-    )
-  }
+  const handleToggleFilter = useCallback(() => {
+    dispatch(toggleFilter(!isFiltered))
+  }, [isFiltered, toggleFilter])
+
+  return (
+    <>
+      <input type="text" name="task" value={inputText} onChange={handleChangeInput} />
+      <button type="button" onClick={handleClickButton}>
+        送信
+      </button>
+      <p>
+        <button onClick={handleToggleFilter}>
+          filterは{isFiltered ? 'on' : 'off'}です。
+        </button>
+      </p>
+    </>
+  )
 }
 
 const _genUUID = () => {
@@ -48,20 +51,4 @@ const _genUUID = () => {
     .slice(-8)
 }
 
-const mapStateToProps = state => {
-  return {
-    isFiltered: state.isFiltered
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    addTask: task => dispatch(addTask(task)),
-    toggleFilter: status => dispatch(toggleFilter(status))
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Component)
+export default Form
