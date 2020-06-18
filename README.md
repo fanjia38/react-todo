@@ -3,4 +3,4 @@
 # react-todo
 勉強用
 
-* [APP](https://fanjia38-react-todo.netlify.com)
+* [APP](https://fanjia38-react-todo.netlify.app)
