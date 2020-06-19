@@ -5,6 +5,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Typography from '@material-ui/core/Typography';
 
 import { updateTaskStatus } from '../store'
 
@@ -21,9 +22,9 @@ const TodoList = () => {
 
   return (
     <Box>
-      <p>
+      <Typography align="center">
         残りタスクは{todoList.filter(todo => !todo.isDone).length}個です。
-      </p>
+      </Typography>
       <List>
         {todoList
           .filter(todo => (isFiltered ? !todo.isDone : true))

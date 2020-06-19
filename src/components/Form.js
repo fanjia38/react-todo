@@ -1,8 +1,10 @@
 import React, { useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField';
+import Switch from '@material-ui/core/Switch';
 
 import { addTask, toggleFilter } from '../store'
 
@@ -35,15 +37,19 @@ const Form = () => {
 
   return (
     <Box p={2}>
-      <TextField id="standard-basic" label="new task" variant="outlined" value={inputText} onChange={handleChangeInput} />
-      <Button variant="contained" color="primary" onClick={handleClickButton} >
+      <TextField label="new task" variant="outlined" margin="normal" fullWidth value={inputText} onChange={handleChangeInput} />
+      <Button variant="contained" color="primary" fullWidth onClick={handleClickButton} >
         送信
       </Button>
-      <p>
-        <Button color={isFiltered ? 'primary' : 'default'} onClick={handleToggleFilter}>
-          filterは {isFiltered ? 'on' : 'off'} です
-        </Button>
-      </p>
+      <Grid container justify="flex-end">
+        <Switch
+          checked={isFiltered}
+          onChange={handleToggleFilter}
+          color="primary"
+          name="filter"
+          inputProps={{ 'aria-label': 'primary checkbox' }}
+        />
+      </Grid>
     </Box>
   )
 }
