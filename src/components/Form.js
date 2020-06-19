@@ -1,7 +1,10 @@
 import React, { useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField';
 
-import { addTask, toggleFilter } from './store'
+import { addTask, toggleFilter } from '../store'
 
 const Form = () => {
   const [inputText, setInputText] = useState('')
@@ -31,17 +34,17 @@ const Form = () => {
   }, [isFiltered, toggleFilter])
 
   return (
-    <>
-      <input type="text" name="task" value={inputText} onChange={handleChangeInput} />
-      <button type="button" onClick={handleClickButton}>
+    <Box p={2}>
+      <TextField id="standard-basic" label="new task" variant="outlined" value={inputText} onChange={handleChangeInput} />
+      <Button variant="contained" color="primary" onClick={handleClickButton} >
         送信
-      </button>
+      </Button>
       <p>
-        <button onClick={handleToggleFilter}>
-          filterは{isFiltered ? 'on' : 'off'}です。
-        </button>
+        <Button color={isFiltered ? 'primary' : 'default'} onClick={handleToggleFilter}>
+          filterは {isFiltered ? 'on' : 'off'} です
+        </Button>
       </p>
-    </>
+    </Box>
   )
 }
 

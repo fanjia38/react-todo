@@ -1,20 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
+import { CssBaseline } from '@material-ui/core'
 
-import Form from './Form'
-import List from './List'
+import MyApp from './components/MyApp'
 import store from './store'
-
-import './styles.css'
 
 class App extends React.Component {
   render () {
     return (
       <div className="App">
-        <h1>TODO</h1>
-        <Form />
-        <List />
+        <CssBaseline />
+        <MyApp />
       </div>
     )
   }
