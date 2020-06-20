@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useMemo} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
@@ -20,14 +20,21 @@ const TodoList = () => {
     dispatch(updateTaskStatus(updatedTodos))
   }
 
+  const enableList = useMemo(() => {
+    return todoList.filter(todo => isFiltered ? !todo.isDone : true)
+  }, [todoList, isFiltered])
+
+  const disableList = useMemo(() => {
+    return todoList.filter(todo => isFiltered ? todo.isDone : false)
+  }, [todoList, isFiltered])
+
   return (
     <Box>
       <Typography align="center">
         残りタスクは{todoList.filter(todo => !todo.isDone).length}個です。
       </Typography>
       <List>
-        {todoList
-          .filter(todo => (isFiltered ? !todo.isDone : true))
+        {enableList
           .map(todo => (
             <ListItem key={todo.id} role={undefined} dense button>
               <FormControlLabel
@@ -38,6 +45,16 @@ const TodoList = () => {
               />
           </ListItem>
         ))}
+        {disableList.map(todo => (
+          <ListItem key={todo.id} role={undefined} dense button>
+            <FormControlLabel
+              control={
+                <Checkbox color="default" disabled checked />
+              }
+              label={todo.task}
+            />
+        </ListItem>
+      ))}
       </List>
     </Box>
   )

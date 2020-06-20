@@ -2,7 +2,7 @@ import * as redux from 'redux'
 
 const initialState = {
   todoList: [],
-  isFiltered: false
+  isFiltered: true
 }
 
 export const addTask = task => {
