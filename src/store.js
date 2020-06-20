@@ -1,5 +1,10 @@
-import * as redux from 'redux'
+import { createStore } from 'redux'
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
+/**
+ * reducer
+ */
 const initialState = {
   todoList: [],
   isFiltered: true
@@ -28,5 +33,15 @@ const reducer = (state = initialState, action) => {
   }
 }
 
-const store = redux.createStore(reducer)
-export default store
+/**
+ * persist
+ */
+const persistConfig = {
+  key: 'root',
+  storage
+}
+
+const persistedReducer = persistReducer(persistConfig, reducer)
+
+export const store = createStore(persistedReducer)
+export const persistor = persistStore(store)

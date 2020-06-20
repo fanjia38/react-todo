@@ -2,9 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { CssBaseline } from '@material-ui/core'
+import { PersistGate } from 'redux-persist/integration/react'
 
 import MyApp from './components/MyApp'
-import store from './store'
+import { store, persistor } from './store'
 
 class App extends React.Component {
   render () {
@@ -20,7 +21,9 @@ class App extends React.Component {
 const rootElement = document.getElementById('root')
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   rootElement
 )
