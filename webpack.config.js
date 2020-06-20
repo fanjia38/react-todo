@@ -3,24 +3,19 @@ const webpack = require('webpack')
 
 module.exports = {
   entry: './src/index.js',
+  // devTool: 'inline-source-map',
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js'
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js']
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-            plugins: [
-              '@babel/plugin-proposal-class-properties'
-            ]
-          }
-        },
-        exclude: /node_modules/
+        test: /\.[tj]sx?$/,
+        use: 'ts-loader'
       },
       {
         test: /\.css$/,
@@ -36,6 +31,6 @@ module.exports = {
     contentBase: path.join(__dirname, 'public'),
     port: 9000,
     hot: true,
-    open: true,
+    open: true
   }
 }

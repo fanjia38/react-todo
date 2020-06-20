@@ -1,0 +1,20 @@
+// memo
+// https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html#early-benefits
+{
+  "compilerOptions": {
+      "outDir": "./public",
+      "sourceMap": true,
+      "target": "es5",
+      "module": "es2015",
+      "allowJs": true,
+      "jsx": "react",
+      "strict": true,
+      "lib": ["es6", "dom"],
+      "noImplicitAny": true,
+      "noImplicitThis": true,
+      "strictNullChecks": true
+  },
+  "include": [
+      "./src/**/*"
+  ]
+}

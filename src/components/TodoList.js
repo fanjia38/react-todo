@@ -1,11 +1,11 @@
-import React, {useMemo} from 'react'
+import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Box from '@material-ui/core/Box';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Checkbox from '@material-ui/core/Checkbox'
+import Typography from '@material-ui/core/Typography'
 
 import { updateTaskStatus } from '../store'
 
@@ -20,11 +20,11 @@ const TodoList = () => {
     dispatch(updateTaskStatus(updatedTodos))
   }
 
-  const enableList = useMemo(() => {
+  const enableList = React.useMemo(() => {
     return todoList.filter(todo => isFiltered ? !todo.isDone : true)
   }, [todoList, isFiltered])
 
-  const disableList = useMemo(() => {
+  const disableList = React.useMemo(() => {
     return todoList.filter(todo => isFiltered ? todo.isDone : false)
   }, [todoList, isFiltered])
 
@@ -43,8 +43,9 @@ const TodoList = () => {
                 }
                 label={todo.task}
               />
-          </ListItem>
-        ))}
+            </ListItem>
+          ))
+        }
         {disableList.map(todo => (
           <ListItem key={todo.id} role={undefined} dense button>
             <FormControlLabel
@@ -53,8 +54,8 @@ const TodoList = () => {
               }
               label={todo.task}
             />
-        </ListItem>
-      ))}
+          </ListItem>
+        ))}
       </List>
     </Box>
   )

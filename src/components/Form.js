@@ -1,20 +1,20 @@
-import React, { useState, useCallback } from 'react'
+import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box'
+import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField';
-import Switch from '@material-ui/core/Switch';
+import TextField from '@material-ui/core/TextField'
+import Switch from '@material-ui/core/Switch'
 
 import { addTask, toggleFilter } from '../store'
 
 const Form = () => {
-  const [inputText, setInputText] = useState('')
+  const [inputText, setInputText] = React.useState('')
 
   const dispatch = useDispatch()
   const isFiltered = useSelector(store => store.isFiltered)
 
-  const handleClickButton = useCallback(() => {
+  const handleClickButton = React.useCallback(() => {
     if (inputText.length <= 0) return
 
     const newTodo = {
@@ -27,11 +27,11 @@ const Form = () => {
     setInputText('')
   }, [inputText, setInputText, addTask])
 
-  const handleChangeInput = useCallback((e) => {
+  const handleChangeInput = React.useCallback((e) => {
     setInputText(e.target.value)
   }, [setInputText])
 
-  const handleToggleFilter = useCallback(() => {
+  const handleToggleFilter = React.useCallback(() => {
     dispatch(toggleFilter(!isFiltered))
   }, [isFiltered, toggleFilter])
 
