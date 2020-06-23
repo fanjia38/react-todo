@@ -1,26 +1,29 @@
 import { createStore } from 'redux'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import type { Todo } from './types/todo'
+import type { ActionType, StoreState } from './types/store'
+import { ADD_TASK, UPDATE_TASK_STATUS, UPDATE_FILTER_STATUS } from './types/store'
 
 /**
  * reducer
  */
-const initialState = {
+const initialState: StoreState = {
   todoList: [],
   isFiltered: true
 }
 
-export const addTask = task => {
-  return { type: 'ADD_TASK', payload: task }
+export const addTask = (task: Todo): ActionType => {
+  return { type: ADD_TASK, payload: task }
 }
-export const updateTaskStatus = todoList => {
-  return { type: 'UPDATE_TASK_STATUS', payload: todoList }
+export const updateTaskStatus = (todoList: Todo[]): ActionType => {
+  return { type: UPDATE_TASK_STATUS, payload: todoList }
 }
-export const toggleFilter = status => {
-  return { type: 'UPDATE_FILTER_STATUS', payload: status }
+export const toggleFilter = (status: boolean): ActionType => {
+  return { type: UPDATE_FILTER_STATUS, payload: status }
 }
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action: ActionType): StoreState => {
   switch (action.type) {
     case 'ADD_TASK':
       return { ...state, todoList: [...state.todoList, action.payload] }

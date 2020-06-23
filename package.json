@@ -9,16 +9,17 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack --mode production",
-    "lint": "eslint src/*.js",
-    "lint:fix": "eslint --fix src/*.js"
+    "lint": "eslint src/**/*",
+    "lint:fix": "eslint --fix src/**/*",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@material-ui/core": "^4.10.2",
+    "@types/material-ui": "^0.21.7",
     "@types/react": "^16.9.38",
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
     "@types/redux": "^3.6.0",
-    "@types/redux-persist": "^4.3.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
@@ -26,6 +27,7 @@
     "redux-persist": "^6.0.0"
   },
   "devDependencies": {
+    "@material-ui/types": "^5.1.0",
     "@typescript-eslint/eslint-plugin": "^3.3.0",
     "@typescript-eslint/parser": "^3.3.0",
     "css-loader": "^3.6.0",
@@ -51,7 +53,7 @@
     }
   },
   "lint-staged": {
-    "src/*.js": [
+    "src/**/*": [
       "eslint --fix",
       "git add ."
     ]

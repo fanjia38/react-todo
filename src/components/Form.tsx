@@ -5,19 +5,20 @@ import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Switch from '@material-ui/core/Switch'
+import type { Todo } from '../types/todo'
 
 import { addTask, toggleFilter } from '../store'
 
-const Form = () => {
+const Form: React.FC = ():React.ReactElement => {
   const [inputText, setInputText] = React.useState('')
 
   const dispatch = useDispatch()
-  const isFiltered = useSelector(store => store.isFiltered)
+  const isFiltered: boolean = useSelector(store => store.isFiltered)
 
   const handleClickButton = React.useCallback(() => {
     if (inputText.length <= 0) return
 
-    const newTodo = {
+    const newTodo: Todo = {
       id: _genUUID(),
       task: inputText,
       isDone: false
@@ -54,7 +55,7 @@ const Form = () => {
   )
 }
 
-const _genUUID = () => {
+const _genUUID = (): string => {
   return Math.random() // randomなidを生成しています
     .toString(36)
     .slice(-8)

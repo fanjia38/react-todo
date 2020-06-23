@@ -6,36 +6,37 @@ import ListItem from '@material-ui/core/ListItem'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import Typography from '@material-ui/core/Typography'
+import type { Todo } from '../types/todo'
 
 import { updateTaskStatus } from '../store'
 
-const TodoList = () => {
+const TodoList: React.FC = (): React.ReactElement => {
   const dispatch = useDispatch()
   const { todoList, isFiltered } = useSelector(store => store)
 
-  const handleUpdate = id => {
-    const updatedTodos = todoList.map(todo =>
+  const handleUpdate = (id: string): void => {
+    const updatedTodos = todoList.map((todo: Todo) =>
       todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
     )
     dispatch(updateTaskStatus(updatedTodos))
   }
 
   const enableList = React.useMemo(() => {
-    return todoList.filter(todo => isFiltered ? !todo.isDone : true)
+    return todoList.filter((todo: Todo) => isFiltered ? !todo.isDone : true)
   }, [todoList, isFiltered])
 
   const disableList = React.useMemo(() => {
-    return todoList.filter(todo => isFiltered ? todo.isDone : false)
+    return todoList.filter((todo: Todo) => isFiltered ? todo.isDone : false)
   }, [todoList, isFiltered])
 
   return (
     <Box>
       <Typography align="center">
-        残りタスクは{todoList.filter(todo => !todo.isDone).length}個です。
+        残りタスクは{todoList.filter((todo: Todo) => !todo.isDone).length}個です。
       </Typography>
       <List>
         {enableList
-          .map(todo => (
+          .map((todo: Todo) => (
             <ListItem key={todo.id} role={undefined} dense button>
               <FormControlLabel
                 control={
@@ -46,7 +47,7 @@ const TodoList = () => {
             </ListItem>
           ))
         }
-        {disableList.map(todo => (
+        {disableList.map((todo: Todo) => (
           <ListItem key={todo.id} role={undefined} dense button>
             <FormControlLabel
               control={

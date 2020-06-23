@@ -2,19 +2,20 @@
 // https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html#early-benefits
 {
   "compilerOptions": {
-      "outDir": "./public",
-      "sourceMap": true,
-      "target": "es5",
-      "module": "es2015",
-      "allowJs": true,
-      "jsx": "react",
-      "strict": true,
-      "lib": ["es6", "dom"],
-      "noImplicitAny": true,
-      "noImplicitThis": true,
-      "strictNullChecks": true
+    "outDir": "./public",
+    "target": "es5",
+    "lib": [
+      "dom",
+      "es2015"
+    ],
+    "jsx": "react",
+    "strict": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "noEmit": true,
+    "esModuleInterop": true,
   },
   "include": [
-      "./src/**/*"
+    "./src/**/*"
   ]
 }

@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MyApp = () => {
+const MyApp: React.FC = (): React.ReactElement => {
   const classes = useStyles();
 
   return (

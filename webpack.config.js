@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   // devTool: 'inline-source-map',
   output: {
     path: path.resolve(__dirname, 'public'),

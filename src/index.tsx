@@ -7,22 +7,12 @@ import { PersistGate } from 'redux-persist/integration/react'
 import MyApp from './components/MyApp'
 import { store, persistor } from './store'
 
-class App extends React.Component {
-  render () {
-    return (
-      <div className="App">
-        <CssBaseline />
-        <MyApp />
-      </div>
-    )
-  }
-}
-
 const rootElement = document.getElementById('root')
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <App />
+      <CssBaseline />
+      <MyApp />
     </PersistGate>
   </Provider>,
   rootElement
