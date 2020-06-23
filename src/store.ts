@@ -23,7 +23,7 @@ export const toggleFilter = (status: boolean): ActionType => {
   return { type: UPDATE_FILTER_STATUS, payload: status }
 }
 
-const reducer = (state = initialState, action: ActionType): StoreState => {
+const reducer = (state = initialState, action: any): StoreState => {
   switch (action.type) {
     case 'ADD_TASK':
       return { ...state, todoList: [...state.todoList, action.payload] }
