@@ -3,16 +3,21 @@
 {
   "compilerOptions": {
     "outDir": "./public",
+    "noEmit": false,
+    "sourceMap": true,
+    "allowJs": true,
     "target": "es5",
+    "module": "es2015",
+    "jsx": "react",
+    "moduleResolution": "node",
     "lib": [
       "dom",
       "es2015"
     ],
-    "jsx": "react",
+    "typeRoots": ["./src/types"],
     "strict": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
-    "noEmit": true,
     "esModuleInterop": true,
   },
   "include": [

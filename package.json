@@ -39,7 +39,6 @@
     "eslint-plugin-react-redux": "^3.0.3",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "source-map-loader": "^1.0.0",
     "style-loader": "^1.2.1",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.5",
