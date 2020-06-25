@@ -19,6 +19,7 @@
     "noImplicitThis": true,
     "strictNullChecks": true,
     "esModuleInterop": true,
+    "noImplicitAny": true
   },
   "include": [
     "./src/**/*"

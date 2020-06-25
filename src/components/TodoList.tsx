@@ -23,21 +23,13 @@ const TodoList: React.FC = (): React.ReactElement => {
     dispatch(updateTaskStatus(updatedTodos))
   }
 
-  const uncheckedList = React.useMemo(() => {
-    return todoList.filter((todo: Todo) => isFiltered ? !todo.isDone : true)
-  }, [todoList, isFiltered])
-
-  const checkedList = React.useMemo(() => {
-    return todoList.filter((todo: Todo) => isFiltered ? todo.isDone : false)
-  }, [todoList, isFiltered])
-
   return (
     <Box>
       <Typography align="center">
         残りタスクは{todoList.filter((todo: Todo) => !todo.isDone).length}個です。
       </Typography>
       <List>
-        {uncheckedList
+        {todoList.filter((todo) => !isFiltered || !todo.isDone)
           .map((todo: Todo) => (
             <ListItem key={todo.id} role={undefined} dense button>
               <FormControlLabel
@@ -49,17 +41,6 @@ const TodoList: React.FC = (): React.ReactElement => {
             </ListItem>
           ))
         }
-        {checkedList.map((todo: Todo) => (
-          <ListItem key={todo.id} role={undefined} dense button>
-            <FormControlLabel
-            disabled={true}
-              control={
-                <Checkbox color="default" checked />
-              }
-              label={todo.task}
-            />
-          </ListItem>
-        ))}
       </List>
     </Box>
   )
