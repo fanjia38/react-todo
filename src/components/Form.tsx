@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { State } from '../store'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
@@ -13,7 +14,7 @@ const Form: React.FC = ():React.ReactElement => {
   const [inputText, setInputText] = React.useState('')
 
   const dispatch = useDispatch()
-  const isFiltered: boolean = useSelector(store => store.isFiltered)
+  const isFiltered: boolean = useSelector<State, boolean>(store => store.isFiltered)
 
   const handleClickButton = React.useCallback(() => {
     if (inputText.length <= 0) return
@@ -40,7 +41,7 @@ const Form: React.FC = ():React.ReactElement => {
     <Box p={2}>
       <TextField label="new task" variant="outlined" margin="normal" fullWidth value={inputText} onChange={handleChangeInput} />
       <Button variant="contained" color="primary" fullWidth onClick={handleClickButton} >
-        送信
+        submit
       </Button>
       <Grid container justify="flex-end">
         <Switch

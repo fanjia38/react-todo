@@ -3,7 +3,6 @@ const webpack = require('webpack')
 
 module.exports = {
   entry: './src/index.tsx',
-  // devTool: 'inline-source-map',
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js'
@@ -14,8 +13,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.[tj]sx?$/,
-        use: 'ts-loader'
+        test: /(ts|tsx|js)/,
+        use: 'ts-loader',
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,

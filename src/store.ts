@@ -1,14 +1,14 @@
-import { createStore } from 'redux'
+import { createStore, Reducer } from 'redux'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import type { Todo } from './types/todo'
-import type { ActionType, StoreState } from './types/store'
+import type { ActionType, Store } from './types/store'
 import { ADD_TASK, UPDATE_TASK_STATUS, UPDATE_FILTER_STATUS } from './types/store'
 
 /**
  * reducer
  */
-const initialState: StoreState = {
+const initialState: Store = {
   todoList: [],
   isFiltered: true
 }
@@ -23,7 +23,7 @@ export const toggleFilter = (status: boolean): ActionType => {
   return { type: UPDATE_FILTER_STATUS, payload: status }
 }
 
-const reducer = (state = initialState, action: any): StoreState => {
+const reducer: Reducer<Store> = (state: Store = initialState, action: any): Store => {
   switch (action.type) {
     case 'ADD_TASK':
       return { ...state, todoList: [...state.todoList, action.payload] }
@@ -48,3 +48,5 @@ const persistedReducer = persistReducer(persistConfig, reducer)
 
 export const store = createStore(persistedReducer)
 export const persistor = persistStore(store)
+
+export type State = ReturnType<typeof store.getState>;

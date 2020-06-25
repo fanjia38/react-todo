@@ -1,6 +1,6 @@
 import type { Todo } from './todo'
 
-export interface StoreState {
+export interface Store {
   todoList: Todo[],
   isFiltered: boolean
 }

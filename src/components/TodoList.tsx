@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { State } from '../store'
 import Box from '@material-ui/core/Box'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -7,12 +8,13 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import Typography from '@material-ui/core/Typography'
 import type { Todo } from '../types/todo'
+import type {Store} from '../types/store'
 
 import { updateTaskStatus } from '../store'
 
 const TodoList: React.FC = (): React.ReactElement => {
   const dispatch = useDispatch()
-  const { todoList, isFiltered } = useSelector(store => store)
+  const { todoList, isFiltered } = useSelector<State, Store>(store => store)
 
   const handleUpdate = (id: string): void => {
     const updatedTodos = todoList.map((todo: Todo) =>
@@ -21,11 +23,11 @@ const TodoList: React.FC = (): React.ReactElement => {
     dispatch(updateTaskStatus(updatedTodos))
   }
 
-  const enableList = React.useMemo(() => {
+  const uncheckedList = React.useMemo(() => {
     return todoList.filter((todo: Todo) => isFiltered ? !todo.isDone : true)
   }, [todoList, isFiltered])
 
-  const disableList = React.useMemo(() => {
+  const checkedList = React.useMemo(() => {
     return todoList.filter((todo: Todo) => isFiltered ? todo.isDone : false)
   }, [todoList, isFiltered])
 
@@ -35,7 +37,7 @@ const TodoList: React.FC = (): React.ReactElement => {
         残りタスクは{todoList.filter((todo: Todo) => !todo.isDone).length}個です。
       </Typography>
       <List>
-        {enableList
+        {uncheckedList
           .map((todo: Todo) => (
             <ListItem key={todo.id} role={undefined} dense button>
               <FormControlLabel
@@ -47,11 +49,12 @@ const TodoList: React.FC = (): React.ReactElement => {
             </ListItem>
           ))
         }
-        {disableList.map((todo: Todo) => (
+        {checkedList.map((todo: Todo) => (
           <ListItem key={todo.id} role={undefined} dense button>
             <FormControlLabel
+            disabled={true}
               control={
-                <Checkbox color="default" disabled checked />
+                <Checkbox color="default" checked />
               }
               label={todo.task}
             />
