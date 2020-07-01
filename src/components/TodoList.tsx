@@ -1,15 +1,8 @@
 import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { State } from '../store'
-import Box from '@material-ui/core/Box'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText'
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
-import IconButton from '@material-ui/core/IconButton'
-import Checkbox from '@material-ui/core/Checkbox'
-import Typography from '@material-ui/core/Typography'
+import {Box, List, ListItem, ListItemIcon, ListItemText, ListItemSecondaryAction,
+IconButton, Checkbox, Typography} from '@material-ui/core'
 import ClearIcon from '@material-ui/icons/Clear';
 import type { Todo } from '../types/todo'
 import type {Store} from '../types/store'
