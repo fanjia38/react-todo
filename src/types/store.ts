@@ -6,12 +6,18 @@ export interface Store {
 }
 
 export const ADD_TASK = 'ADD_TASK'
+export const DELETE_TASK = 'DELETE_TASK'
 export const UPDATE_TASK_STATUS = 'UPDATE_TASK_STATUS'
 export const UPDATE_FILTER_STATUS = 'UPDATE_FILTER_STATUS'
 
 interface AddTaskAction {
   type: typeof ADD_TASK
   payload: Todo
+}
+
+interface DeleteTaskAction {
+  type: typeof DELETE_TASK
+  payload: string
 }
 
 interface UpdateTaskStatusAction {
@@ -24,4 +30,4 @@ interface UpdateFilterStatus {
   payload: boolean
 }
 
-export type ActionType = AddTaskAction | UpdateTaskStatusAction | UpdateFilterStatus
+export type ActionType = AddTaskAction | DeleteTaskAction | UpdateTaskStatusAction | UpdateFilterStatus

@@ -3,7 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import type { Todo } from './types/todo'
 import type { ActionType, Store } from './types/store'
-import { ADD_TASK, UPDATE_TASK_STATUS, UPDATE_FILTER_STATUS } from './types/store'
+import { ADD_TASK, DELETE_TASK, UPDATE_TASK_STATUS, UPDATE_FILTER_STATUS } from './types/store'
 
 /**
  * reducer
@@ -16,6 +16,9 @@ const initialState: Store = {
 export const addTask = (task: Todo): ActionType => {
   return { type: ADD_TASK, payload: task }
 }
+export const deleteTask = (id: string): ActionType => {
+  return { type: DELETE_TASK, payload: id}
+}
 export const updateTaskStatus = (todoList: Todo[]): ActionType => {
   return { type: UPDATE_TASK_STATUS, payload: todoList }
 }
@@ -27,6 +30,9 @@ const reducer: Reducer<Store> = (state: Store = initialState, action: any): Stor
   switch (action.type) {
     case 'ADD_TASK':
       return { ...state, todoList: [...state.todoList, action.payload] }
+    case 'DELETE_TASK':
+      const deletedTask = state.todoList.filter((todo: Todo) => todo.id !== action.payload)
+      return {...state, todoList: deletedTask}
     case 'UPDATE_TASK_STATUS':
       return { ...state, todoList: action.payload }
     case 'UPDATE_FILTER_STATUS':
